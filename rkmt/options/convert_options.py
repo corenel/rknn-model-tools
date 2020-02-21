@@ -38,10 +38,13 @@ class ConvertOptions(BaseOptions):
         opt.channel_mean_value = opt.channel_mean_value.replace(',', ' ')
         opt.reorder_channel = opt.reorder_channel.replace(',', ' ')
 
-        assert len(opt.inputs) == len(opt.input_size_list)
-        opt.input_size_list = [
-            input_size.split(',') for input_size in opt.input_size_list
-        ]
+        if opt.platform == 'tensorflow':
+            assert len(opt.inputs) == len(opt.input_size_list)
+        if len(opt.input_size_list) > 0:
+            opt.input_size_list = [
+                map(int, input_size.split('x'))
+                for input_size in opt.input_size_list
+            ]
 
         self.opt = opt
         return self.opt

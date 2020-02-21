@@ -7,7 +7,7 @@ class BaseOptions:
         self.parser = None
         self.opt = None
 
-    def initialize(self, parser):
+    def initialize(self, parser: argparse.ArgumentParser):
         parser.add_argument('--name', type=str)
         self.initialized = True
         return parser

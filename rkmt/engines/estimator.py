@@ -48,7 +48,7 @@ class Estimator(BaseEngine):
         self.timer.print_log()
 
     def get_model_path(self):
-        return self.opt.model_path
+        return self.opt.model_file_path
 
     def get_target(self):
         return self.opt.target
