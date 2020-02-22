@@ -71,9 +71,11 @@ class Converter(BaseEngine):
             if os.path.exists(analysis_results_dir):
                 shutil.rmtree(analysis_results_dir)
             os.makedirs(analysis_results_dir, exist_ok=True)
-            ret = self.rknn.accuracy_analysis(inputs=opt.dataset_file_path,
-                                              output_dir=analysis_results_dir,
-                                              calc_qnt_error=True)
+            ret = self.rknn.accuracy_analysis(
+                inputs=opt.dataset_for_analysis_file_path
+                or opt.dataset_file_path,
+                output_dir=analysis_results_dir,
+                calc_qnt_error=True)
             check_success(ret, 'analyse model failed.')
             print('done')
 

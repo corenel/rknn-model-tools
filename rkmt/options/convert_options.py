@@ -20,6 +20,7 @@ class ConvertOptions(BaseOptions):
 
         # model building
         parser.add_argument('--dataset_file_path', type=str)
+        parser.add_argument('--dataset_for_analysis_file_path', type=str)
         parser.add_argument('--no_pre_compile', action='store_true')
         parser.add_argument('--no_quantization', action='store_true')
         parser.add_argument('--output_path', type=str)
