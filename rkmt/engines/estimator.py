@@ -24,13 +24,31 @@ class Estimator(BaseEngine):
 
     @abstractmethod
     def pre_process(self, inputs):
+        """
+        Pre-process input numpy image to be fed into model
+
+        :param inputs: numpy image or other inputs
+        :return: processed inputs
+        """
         return inputs
 
     @abstractmethod
     def post_process(self, outputs):
+        """
+        Post-process the output of model
+
+        :param outputs: output from model inference
+        :return: meaningful results
+        """
         return outputs
 
     def inference(self, inputs):
+        """
+        Do model inference and get outputs
+
+        :param inputs: inputs
+        :return: results form model
+        """
         self.timer.restart()
         inputs = self.pre_process(inputs)
         self.timer.log_and_restart('pre-process')
@@ -41,14 +59,34 @@ class Estimator(BaseEngine):
         return results
 
     @abstractmethod
-    def draw_results(self, inputs, results):
+    def display_results(self, inputs, results):
+        """
+        Display results on input numpy image
+
+        :param inputs: input numpy image
+        :param results: results from model
+        :return: processed numpy image
+        """
         return inputs
 
-    def print_profiling(self):
+    def print_profiling(self) -> None:
+        """
+        Print profiling information
+        """
         self.timer.print_log()
 
     def get_model_path(self):
+        """
+        Get file path of RKNN model
+
+        :return: file path of RKNN model
+        """
         return self.opt.model_file_path
 
     def get_target(self):
+        """
+        Get target hardware of RKNN model
+
+        :return: target hardware of RKNN model
+        """
         return self.opt.target

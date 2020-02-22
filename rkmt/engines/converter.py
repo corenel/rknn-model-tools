@@ -16,7 +16,8 @@ class Converter(BaseEngine):
         # Create RKNN object
         self.rknn = RKNN(opt.verbose)
 
-    def convert(self):
+    def convert(self) -> None:
+        """Convert models form other platforms into RKNN format."""
         opt = self.opt
         # Config model
         print('--> Configuring model')
