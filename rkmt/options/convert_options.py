@@ -20,8 +20,8 @@ class ConvertOptions(BaseOptions):
 
         # model building
         parser.add_argument('--dataset_file_path', type=str)
-        parser.add_argument('--no_pre_compile', action='store_true', type=str)
-        parser.add_argument('--no_quantization', action='store_true', type=str)
+        parser.add_argument('--no_pre_compile', action='store_true')
+        parser.add_argument('--no_quantization', action='store_true')
         parser.add_argument('--output_path', type=str)
 
         # additional flags
@@ -30,8 +30,8 @@ class ConvertOptions(BaseOptions):
 
         return parser
 
-    def parse(self, additional_args=None):
-        opt = super().parse(additional_args)
+    def parse(self, additional_args=None, estimator_cls=None):
+        opt = super().parse(additional_args, estimator_cls)
 
         assert len(opt.channel_mean_value.split(',')) in (4, 5)
         assert len(opt.reorder_channel.split(',')) == 3
@@ -40,9 +40,9 @@ class ConvertOptions(BaseOptions):
 
         if opt.platform == 'tensorflow':
             assert len(opt.inputs) == len(opt.input_size_list)
-        if len(opt.input_size_list) > 0:
+        if opt.input_size_list is not None and len(opt.input_size_list) > 0:
             opt.input_size_list = [
-                map(int, input_size.split('x'))
+                list(map(int, input_size.split('x')))
                 for input_size in opt.input_size_list
             ]
 

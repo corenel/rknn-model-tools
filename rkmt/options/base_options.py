@@ -48,7 +48,8 @@ class BaseOptions:
         message += '----------------- End -------------------'
         print(message)
 
-    def parse(self, additional_args=None):
-        opt = self.gather_options(additional_args=additional_args)
+    def parse(self, additional_args=None, estimator_cls=None):
+        opt = self.gather_options(additional_args=additional_args,
+                                  estimator_cls=estimator_cls)
         self.opt = opt
         return self.opt
