@@ -18,7 +18,7 @@ class Estimator(BaseEngine):
         self.timer.log_and_restart('load model')
 
         # init runtime
-        ret = self.rknn.init_runtime(self.get_target())
+        ret = self.rknn.init_runtime(target=self.get_target())
         check_success(ret, 'Init runtime environment failed')
         self.timer.log_and_restart('init runtime')
 

@@ -21,7 +21,7 @@ class RunOptions(BaseOptions):
                             '--target',
                             type=str,
                             default='rk1808',
-                            choices=['rk1808', 'pc'],
+                            choices=['rk1808', 'simulator'],
                             help='target hardware platform')
         parser.add_argument(
             '-p',
